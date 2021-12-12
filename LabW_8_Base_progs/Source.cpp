@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 //#define N 10
 #define M 1000
 
@@ -10,9 +10,9 @@
 
 using namespace std;
 
-char *F(char* str, char *maxCouTok) {
+void *F(char* str, char *maxCouTok, char *res_str) {
 
-	char res_str[M]{ '\0' }, token{ '\0' };
+	char token{ '\0' };
 	int countS(0), maxCount(0), len;
 
 	len = strlen(str);
@@ -39,22 +39,20 @@ char *F(char* str, char *maxCouTok) {
 		cout << str[i] << " ";
 	}
 
-	cout << endl << "Result string: ";
+	//cout << endl << "Result string: ";
 	for (int i = 0; i < len; i++) {
 
 		if (str[i] == *maxCouTok) continue;
 		res_str[i] = str[i];
 
-		cout << res_str[i] << " ";
+		//cout << res_str[i] << " ";
 
 
 	}
 
 	cout << endl << "maxCouTok: " << *maxCouTok
 		<< "\tmaxCount: " << maxCount << endl;
-
-	return res_str;
-
+	return 0;
 }
 
 
@@ -76,10 +74,13 @@ void main() {
 	cout << "Enter the text: ";
 	gets_s(str);
 	len = strlen(str);
-	yk4 = F(yk1, yk2);
+	F(yk1, yk2, yk4);
 
-	cout << endl << " " << p <<"------" << endl;
-	for (int i = 0; i < len; i++)
-		cout << i << ": " << ress_str[i] << endl;
+	cout << endl << "Result string: ";
+	for (int i = 0; i < len; i++) {
+		if (ress_str[i] == '\0') continue;
+		cout << ress_str[i] << " ";
+	}
 	cout << endl;
+
 }
