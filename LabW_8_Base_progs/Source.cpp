@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <time.h>
+#include <Windows.h>
 
 using namespace std;
 
@@ -49,7 +50,7 @@ void *F(char* str, char *maxCouTok, char *res_str) {
 
 
 	}
-
+	cout << endl;
 	cout << endl << "maxCouTok: " << *maxCouTok
 		<< "\tmaxCount: " << maxCount << endl;
 	return 0;
@@ -59,6 +60,8 @@ void *F(char* str, char *maxCouTok, char *res_str) {
 
 void main() {
 	setlocale(LC_ALL, "rus");
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
 	/*Написать функцию, которая принимает строку и переменную - символ.Находит в
 	строке наиболее часто встречаемый символ и сохраняет его в переменной -
 	аргументе. Возвращает копию исходной строки, но без этого символа.*/ 
@@ -76,7 +79,7 @@ void main() {
 	len = strlen(str);
 	F(yk1, yk2, yk4);
 
-	cout << endl << "Result string: ";
+	cout << "Result string: ";
 	for (int i = 0; i < len; i++) {
 		if (ress_str[i] == '\0') continue;
 		cout << ress_str[i] << " ";
