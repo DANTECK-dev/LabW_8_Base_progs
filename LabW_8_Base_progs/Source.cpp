@@ -1,6 +1,7 @@
 //#define _CRT_SECURE_NO_WARNINGS
+//#define __STDC_WANT_LIB_EXT1__ 1
 //#define N 10
-#define M 1000
+#define M 200
 
 #include <iostream>
 #include <string>
@@ -8,52 +9,55 @@
 #include <conio.h>
 #include <time.h>
 #include <Windows.h>
+#include<cstring>
 
 using namespace std;
 
-void *F(char* str, char *maxCouTok, char *res_str) {
+char *F(char str[], char* maxCouTok ) {
 
-	char token{ '\0' };
-	int countS(0), maxCount(0), len;
+	char symbol;
+	int countS(0), maxCount(0);
+	char *res_str;
 
-	len = strlen(str);
+	int len = strlen(str);
 	*maxCouTok = str[0];
+	res_str = new char[len];
 
 	cout << "Sorce string: ";
 	for (int i = 0; i < len; i++) {
-		token = str[i];
+		symbol = *(str + i);
 		countS = 0;
-		if (token == ' ') continue;
+		if (symbol == ' ') continue;
 
 		for (int j = 0; j < len; j++) {
 
-			if (str[j] == token) {
+			if (*(str + j) == symbol) {
 				countS++;
 			}
 		}
 
 		if (countS > maxCount) {
 			maxCount = countS;
-			*maxCouTok = token;
+			*maxCouTok = symbol;
 		}
 
-		cout << str[i] << " ";
+		cout << *(str + i) << " ";
 	}
 
 	//cout << endl << "Result string: ";
 	for (int i = 0; i < len; i++) {
 
-		if (str[i] == *maxCouTok) continue;
-		res_str[i] = str[i];
+		if (*(str+i) == *maxCouTok) continue;
+		*(res_str+i) = *(str+i);
 
 		//cout << res_str[i] << " ";
 
 
 	}
-	cout << endl;
+	cout << endl;	
 	cout << endl << "maxCouTok: " << *maxCouTok
 		<< "\tmaxCount: " << maxCount << endl;
-	return 0;
+	return res_str;
 }
 
 
@@ -65,25 +69,29 @@ void main() {
 	/*Написать функцию, которая принимает строку и переменную - символ.Находит в
 	строке наиболее часто встречаемый символ и сохраняет его в переменной -
 	аргументе. Возвращает копию исходной строки, но без этого символа.*/ 
-	char str[M]{ '\0' }, 
-	     ress_str[M]{ '\0' },
-		 p{ '\0' };
-	int len;
 
-	char* yk1 = &str[0];
-	char* yk2 = &p;
-	char* yk4 = &ress_str[0];
+	int n = M;
+	char* str = new char[M];
+	char* ress_str = new char[M];
+	char maxCouTok('\0');
+	char* yk1 = ress_str;
+	char* yk = &maxCouTok;
 
 	cout << "Enter the text: ";
-	gets_s(str);
-	len = strlen(str);
-	F(yk1, yk2, yk4);
+	gets_s(str,n);
 
+
+	char *yk1 = F(str, yk);
+
+	int len = strlen(res_str);
 	cout << "Result string: ";
-	for (int i = 0; i < len; i++) {
-		if (ress_str[i] == '\0') continue;
-		cout << ress_str[i] << " ";
+
+	for (int i = 0; i < len; i++) 
+	{
+		if (*(ress_str+i) == '\0') continue;
+		cout << *(ress_str+i) << " ";
 	}
 	cout << endl;
 
 }
+
