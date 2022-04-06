@@ -44,7 +44,7 @@ char *F(char str[], char* maxCouTok ) {
 		cout << *(str + i) << " ";
 	}
 	cout << endl;
-	//cout << endl << "Result string: ";
+	cout << endl << "Result string: ";
 	for (int i = 0; i < len; i++) {
 
 		if (*(str+i) == *maxCouTok) continue;
@@ -85,7 +85,7 @@ void main() {
 	char* ress_str = F(str, *&maxCouTok);
 
 	int len = strlen(ress_str);
-	cout << "Result string: ";
+	//cout << "Result string: ";
 
 	for (int i = 0; ress_str[i]!='\0'; i++)
 	{
