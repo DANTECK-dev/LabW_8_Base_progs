@@ -20,8 +20,8 @@ char *F(char str[], char* maxCouTok ) {
 	char *res_str;
 
 	int len = strlen(str);
-	*maxCouTok = str[0];
-	res_str = new char[len];
+	maxCouTok = *&str;
+	res_str = new char[len]{'\0'};
 
 	cout << "Sorce string: ";
 	for (int i = 0; i < len; i++) {
@@ -43,21 +43,21 @@ char *F(char str[], char* maxCouTok ) {
 
 		cout << *(str + i) << " ";
 	}
-
+	cout << endl;
 	//cout << endl << "Result string: ";
 	for (int i = 0; i < len; i++) {
 
 		if (*(str+i) == *maxCouTok) continue;
 		*(res_str+i) = *(str+i);
 
-		//cout << res_str[i] << " ";
+		cout << res_str[i] << " ";
 
 
 	}
 	cout << endl;	
 	cout << endl << "maxCouTok: " << *maxCouTok
 		<< "\tmaxCount: " << maxCount << endl;
-	return res_str;
+	return &res_str[0];
 }
 
 
@@ -71,25 +71,26 @@ void main() {
 	аргументе. Возвращает копию исходной строки, но без этого символа.*/ 
 
 	int n = M;
+	char p;
 	char* str = new char[M];
-	char* ress_str = new char[M];
-	char maxCouTok('\0');
-	char* yk1 = ress_str;
-	char* yk = &maxCouTok;
+	//char* ress_str = new char[M];
+	char* maxCouTok = &p;
+	//char* yk1 = &ress_str[0];
+	//char* yk = &maxCouTok;
 
 	cout << "Enter the text: ";
 	gets_s(str,n);
 
 
-	char *yk1 = F(str, yk);
+	char* ress_str = F(str, *&maxCouTok);
 
-	int len = strlen(res_str);
+	int len = strlen(ress_str);
 	cout << "Result string: ";
 
-	for (int i = 0; i < len; i++) 
+	for (int i = 0; ress_str[i]!='\0'; i++)
 	{
-		if (*(ress_str+i) == '\0') continue;
-		cout << *(ress_str+i) << " ";
+		//if (*(ress_str+i) == '\0') continue;
+		cout << *(&ress_str+i) << " ";
 	}
 	cout << endl;
 
